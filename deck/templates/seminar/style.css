@@ -1,0 +1,106 @@
+/* extends: plex-grotesque */
+/* seminar: the look of the "Synthetic Populations Seminar" deck. Navy and paper, Space Grotesk headings,
+   IBM Plex Sans text, Source Serif 4 for statements; cards with a coloured edge; a five-colour stripe on the cover.
+   Only what differs from plex-grotesque is here (sizes are the seminar's 1920 px values scaled to the 1600 px stage).
+
+   Extra classes:  on a slide  {class=dark}  navy slide (cards become ruled columns)
+                   on a card   {class=red | orange | gold | steel}  edge colour (default blue);  {class=top}  edge on top
+                   on text     {class=stat}  **bold** becomes a big red number;  {class=serif}  a serif statement */
+:root {
+  --navy: #173753;
+  --paper: #f5f7fa;
+  --card: #e6edf4;
+  --white: #fbfcfd;
+  --ink: var(--p1, #173753);
+  --ink-2: #3d5366;
+  --ink-3: #5b6e80;
+  --rule: #d3dde7;
+  --accent: var(--p2, #1d70a2);
+  --accent-bg: #e6edf4;
+  --red: var(--p3, #dc143c);
+  --orange: var(--p4, #e55934);
+  --gold: var(--p5, #ffc857);
+  --steel: var(--p6, #4682b4);
+  --warn: var(--orange);
+  --on-dark: #f5f7fa;
+  --on-dark-2: #c9d8e6;
+  --on-dark-3: #8fa6bb;
+  --display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, serif;
+}
+body { background: #0d1f30; }
+
+/* slide frame: eyebrow tight above the title, more air before the body */
+.slide { padding: 76px 100px 90px; gap: 12px; background: var(--paper); }
+.slide > .eyebrow, .slide > h1, .slide > h2 { flex-shrink: 0; }   /* a full body never squeezes the title */
+.slide > .body { margin-top: 24px; }
+.eyebrow { font: 600 20px/1.2 var(--body); letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); }
+h1, h2 { letter-spacing: 0; }
+h1 { font-size: 93px; line-height: 1.05; }
+h2 { font-size: 53px; line-height: 1.15; }
+h3 { font: 700 30px/1.2 var(--display); }
+p, li { font-size: 24px; line-height: 1.4; color: var(--ink-2); }
+.cols { gap: 36px; }
+.heading { font: 700 40px/1.2 var(--display); }
+
+/* cover: navy, gold eyebrow, a gold dash before the authors, the stripe at the bottom */
+.title-slide { background: var(--navy); gap: 30px; }
+.title-slide::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 33px;
+  background: linear-gradient(90deg, var(--steel) 0 20%, var(--accent) 20% 40%, var(--red) 40% 60%, var(--orange) 60% 80%, var(--gold) 80%); }
+.title-slide .eyebrow { font-size: 23px; letter-spacing: 3.3px; color: var(--gold); }
+.title-slide h1 { color: var(--on-dark); }
+.title-slide .sub { font-size: 37px; line-height: 1.3; color: var(--on-dark-2); max-width: 1100px; }
+.title-slide .who { font-size: 23px; color: var(--on-dark-2); margin-top: 30px; }
+.title-slide .who::before { content: ""; display: inline-block; vertical-align: middle; width: 53px; height: 3px; margin: 0 20px 4px 0; background: var(--gold); }
+.title-slide .who strong { color: var(--on-dark); }
+
+/* cards: tinted, no border, a coloured edge */
+.card { background: var(--card); border: 0; border-left: 7px solid var(--accent); border-radius: 13px; padding: 24px 30px; gap: 10px; }
+.card p, .card li { font-size: 22px; }
+.card.top { border-left: 0; border-top: 7px solid var(--accent); }
+.card.red { border-color: var(--red); } .card.orange { border-color: var(--orange); }
+.card.gold { border-color: var(--gold); } .card.steel { border-color: var(--steel); }
+.tag { font: 600 15px/1 var(--body); letter-spacing: 1.7px; padding: 7px 10px; border-radius: 4px; background: var(--white); color: var(--accent); }
+.tag.warn { background: #fbe6df; color: #a63a1c; }
+.kicker { font: 600 17px/1.2 var(--body); letter-spacing: 1.7px; color: var(--accent); }
+.card.red .kicker { color: var(--red); } .card.orange .kicker { color: #b8431f; } .card.steel .kicker { color: var(--steel); }
+
+/* text styles */
+.take, .take p { font: 400 40px/1.35 var(--serif); color: var(--ink); }
+.serif, .serif p { font: 400 30px/1.4 var(--serif); color: var(--ink); }
+.stat p { font-size: 22px; line-height: 1.35; }
+.stat strong { display: block; font: 600 60px/1.1 var(--body); color: var(--red); margin-bottom: 4px; }
+.cite, .cite p, .photo figcaption, .tbl figcaption, .embed figcaption { font: 400 20px/1.4 var(--body); color: var(--ink-3); }
+.plot figcaption { font: 500 20px/1.3 var(--body); }
+.photo img { border-radius: 13px; border-color: var(--rule); background: var(--white); }
+.plot3d, .embed-box { border-radius: 13px; }
+
+/* tables: on white, tinted header row */
+.tbl table { background: var(--white); border-radius: 13px; overflow: hidden; }
+.tbl th, .tbl td { padding: 10px 16px; font-size: 22px; color: var(--ink); }
+.tbl th { font: 600 17px/1.2 var(--body); letter-spacing: 1.5px; background: var(--card); color: var(--ink-2); border-bottom: 0; }
+
+/* dark slide, {class=dark}: navy, gold eyebrow; cards become ruled columns */
+.slide.dark { background: var(--navy); }
+.dark .eyebrow, .dark .kicker { color: var(--gold); }
+.dark h1, .dark h2, .dark h3, .dark strong, .dark .heading, .dark .take, .dark .take p, .dark .serif, .dark .serif p { color: var(--on-dark); }
+.dark p, .dark li, .dark .tbl td { color: var(--on-dark-2); }
+.dark .muted, .dark .muted p, .dark .cite, .dark .cite p, .dark figcaption { color: var(--on-dark-3); }
+.dark .card { background: transparent; border-radius: 0; border-left: 5px solid var(--gold); padding: 0 0 0 27px; }
+.dark .card.top { border-left: 0; border-top: 5px solid var(--gold); padding: 22px 0 0; }
+.dark .card.red { border-color: var(--red); } .dark .card.orange { border-color: var(--orange); } .dark .card.steel { border-color: var(--steel); }
+.dark .card.red .kicker { color: #ff8a9f; } .dark .card.orange .kicker { color: #ff9a7a; } .dark .card.steel .kicker { color: #7fb0da; }
+.dark .stat strong { color: var(--gold); }
+.dark .tag { background: #21496b; color: var(--gold); }
+.dark code { background: #21496b; color: var(--on-dark); }
+
+/* chrome */
+.foot { font: 400 17px/1 var(--body); letter-spacing: .02em; color: var(--ink-3); bottom: 36px; left: 100px; }
+#stage:has(.slide.on.dark) .foot, #stage:has(.title-slide.on) .foot { color: var(--on-dark-3); }
+#stage:has(.title-slide.on) .foot { bottom: 56px; }
+#stage:has(.slide.on.dark) #sections b, #stage:has(.title-slide.on) #sections b { color: var(--gold); }
+#progress { background: var(--gold); height: 5px; }
+#stage:has(.title-slide.on) #progress { display: none; }
+code { background: var(--card); }
+pre.code { background: #102a40; }

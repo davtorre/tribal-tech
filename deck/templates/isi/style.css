@@ -1,0 +1,145 @@
+/* extends: plex-grotesque */
+/* isi: inspired by the ISI Foundation presentation pack (examples/media/isi). Black and light grey grounds,
+   six flat brand colours, hard edges, the pack's own background art (img/, embedded at build time).
+   Inter for text, Space Mono for labels (it echoes the monospaced wordmark). A small square is the recurring mark.
+
+   Extra classes:  on a slide  {class=dark}  black ground;  {class=art}  the pack's pattern on the right (content
+                               keeps to the left 54%);  {class=cyan | purple | pink | green | red | orange}  a solid
+                               colour slide (section breaks, statements);  {class=logo}  the big-logo closing slide
+                   on a card   {class=cyan | purple | pink | green | red | orange}  colour of its mark (default cyan);
+                               {class=fill}  the card itself in that colour
+                   on text     {class=stat}  **bold** becomes a big number;  {class=take}  a large statement */
+:root {
+  --black: #000000;
+  --grey: #e6e6e6;
+  --white: #ffffff;
+  --cyan: #14aff0;
+  --purple: var(--p2, #932ab8);
+  --pink: #eb5a96;
+  --green: #28b41e;
+  --red: #ff2f17;
+  --orange: #ff9600;
+  --paper: var(--grey);
+  --card: var(--white);
+  --ink: var(--p1, #000000);
+  --ink-2: #2b2b2b;
+  --ink-3: #6b6b6b;
+  --rule: #c8c8c8;
+  --accent: var(--purple);         /* plots and links: purple reads on grey and on white */
+  --accent-bg: #f1e4f6;
+  --mark: var(--cyan);             /* the square before eyebrows, card kickers, the progress bar */
+  --warn: var(--orange);
+  --display: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Space Mono", ui-monospace, Menlo, monospace;
+}
+body { background: #111; }
+
+/* frame: the pack's light ground with the logo top-left; content starts below the logo */
+.slide { padding: 120px 100px 84px; gap: 12px; background: var(--grey) url(asset:img/light.png) 0 0 / 100% 100% no-repeat; }
+.slide > .eyebrow, .slide > h1, .slide > h2 { flex-shrink: 0; }
+.slide > .body { margin-top: 16px; }
+.eyebrow { font: 700 17px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink);
+  display: flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 14px; height: 14px; background: var(--mark); flex: none; }
+h1, h2 { font-family: var(--display); font-weight: 800; letter-spacing: -.025em; }
+h1 { font-size: 80px; line-height: 1.02; }
+h2 { font-size: 52px; line-height: 1.04; }
+h3 { font: 700 27px/1.2 var(--display); letter-spacing: -.01em; }
+p, li { font-size: 24px; line-height: 1.42; color: var(--ink-2); }
+strong { font-weight: 700; }
+.heading { font: 800 40px/1.1 var(--display); letter-spacing: -.02em; }
+.cols { gap: 32px; }
+code { background: rgba(0,0,0,.07); border-radius: 0; }
+
+/* cover: the pack's black cover, title on the left of the pattern */
+.title-slide { background: var(--black) url(asset:img/cover.png) 0 0 / 100% 100% no-repeat; padding: 170px 100px 92px; gap: 26px; justify-content: center; }
+.title-slide > * { max-width: 760px; }
+.title-slide .eyebrow { color: var(--white); }
+.title-slide h1 { color: var(--white); }
+.title-slide .sub { font-size: 30px; line-height: 1.3; color: #cfcfcf; max-width: 760px; }
+.title-slide .who { font: 400 19px/1.5 var(--mono); color: #cfcfcf; }
+.title-slide .who strong { color: var(--white); }
+
+/* cards: flat white, hard edges, a coloured square before the kicker or title */
+.card { background: var(--card); border: 0; border-radius: 0; padding: 22px 26px; gap: 8px; --c: var(--mark); }
+.card p, .card li { font-size: 22px; }
+.card > .kicker, .card > h3:first-child, .card > .tag + h3 { display: flex; align-items: baseline; gap: 12px; }
+.card > .kicker::before, .card > h3:first-child::before, .card > .tag + h3::before { content: ""; width: 13px; height: 13px; background: var(--c); flex: none; }
+.card.cyan { --c: var(--cyan); } .card.purple { --c: var(--purple); } .card.pink { --c: var(--pink); }
+.card.green { --c: var(--green); } .card.red { --c: var(--red); } .card.orange { --c: var(--orange); }
+.kicker { font: 700 15px/1.2 var(--mono); letter-spacing: .05em; color: var(--ink); }
+.tag { font: 700 14px/1 var(--mono); letter-spacing: .04em; padding: 7px 10px; border-radius: 0; background: var(--black); color: var(--white); }
+.tag.warn { background: var(--orange); color: var(--black); }
+
+/* text styles */
+.take, .take p { font: 800 46px/1.12 var(--display); letter-spacing: -.02em; color: var(--ink); }
+.stat p { font-size: 21px; line-height: 1.35; }
+.stat strong { display: block; font: 800 66px/1 var(--display); letter-spacing: -.03em; color: var(--purple); margin-bottom: 8px; }
+.cite, .cite p, .photo figcaption, .tbl figcaption, .embed figcaption { font: 400 16px/1.45 var(--mono); color: var(--ink-3); }
+.plot figcaption { font: 700 16px/1.3 var(--mono); }
+.photo img, .plot3d, .embed-box { border-radius: 0; border: 0; }
+
+/* tables: black header row, white body */
+.tbl table { background: var(--white); }
+.tbl th, .tbl td { padding: 11px 16px; font-size: 22px; color: var(--ink); border-bottom: 1px solid var(--grey); }
+.tbl th { font: 700 15px/1.2 var(--mono); letter-spacing: .04em; background: var(--black); color: var(--white); border-bottom: 0; }
+
+/* dark: black ground */
+.slide.dark { background: var(--black) url(asset:img/dark.png) 0 0 / 100% 100% no-repeat; }
+.dark, .dark :is(h1, h2, h3, strong, .heading, .take, .take p, .eyebrow) { color: var(--white); }
+.dark :is(p, li) { color: #cfcfcf; }
+.dark :is(.muted, .muted p, .cite, .cite p, figcaption) { color: #9a9a9a; }
+.dark .card { background: #1b1b1b; }
+.dark .card :is(p, li) { color: #d6d6d6; }
+.dark .card :is(h3, .kicker, strong) { color: var(--white); }
+.dark .stat strong { color: var(--cyan); }
+.dark code { background: rgba(255,255,255,.12); color: var(--white); }
+
+/* art: the pack's pattern on the right; content keeps to the left */
+.slide.art { background-image: url(asset:img/light-art.png); }
+.slide.dark.art { background-image: url(asset:img/dark-art.png); }
+.slide.art { padding-top: 168px; }            /* this ground has the larger logo with the wordmark */
+.slide.art > * { max-width: 54%; }
+.slide.art > .body { width: 54%; }
+
+/* solid colour slides: white logo top-left; black text on light colours, white on purple and red */
+.slide.cyan { background: var(--cyan) url(asset:img/cyan.png) 0 0 / 100% 100% no-repeat; }
+.slide.purple { background: var(--purple) url(asset:img/purple.png) 0 0 / 100% 100% no-repeat; }
+.slide.pink { background: var(--pink) url(asset:img/pink.png) 0 0 / 100% 100% no-repeat; }
+.slide.green { background: var(--green) url(asset:img/green.png) 0 0 / 100% 100% no-repeat; }
+.slide.red { background: var(--red) url(asset:img/red.png) 0 0 / 100% 100% no-repeat; }
+.slide.orange { background: var(--orange) url(asset:img/orange.png) 0 0 / 100% 100% no-repeat; }
+.slide:is(.cyan, .pink, .green, .orange) { --mark: var(--black); }
+.slide:is(.cyan, .pink, .green, .orange) :is(h1, h2, h3, p, li, strong, .eyebrow, .take, .take p, .heading) { color: var(--black); }
+.slide:is(.purple, .red) { --mark: var(--white); }
+.slide:is(.purple, .red) :is(h1, h2, h3, p, li, strong, .eyebrow, .take, .take p, .heading) { color: var(--white); }
+.slide:is(.cyan, .purple, .pink, .green, .red, .orange) .card { --c: var(--black); }
+.slide:is(.cyan, .purple, .pink, .green, .red, .orange) .card :is(h3, p, li, strong, .kicker) { color: var(--black); }
+.slide:is(.cyan, .purple, .pink, .green, .red, .orange) .stat strong { color: inherit; }
+
+/* closing slide: the pack's big logo, bottom right; a short line of text on the left */
+.slide.logo { background: var(--black) url(asset:img/logo.png) 0 0 / 100% 100% no-repeat; justify-content: center; }
+.slide.logo > * { max-width: 52%; }
+.slide.logo :is(h1, h2, h3, p, strong, .eyebrow, .take, .take p) { color: var(--white); }
+
+/* fill cards: after the dark and colour-slide rules, so the fill always wins */
+.slide .card.fill { background: var(--c); }
+.slide .card.fill :is(h3, p, li, strong, .kicker) { color: var(--black); }
+.slide .card.fill > :is(.kicker, h3)::before { background: var(--black); }
+.slide .card.fill:is(.purple, .red) :is(h3, p, li, strong, .kicker) { color: var(--white); }
+.slide .card.fill:is(.purple, .red) > :is(.kicker, h3)::before { background: var(--white); }
+
+/* chrome: mono footer; white on dark grounds */
+.foot { font: 400 14px/1 var(--mono); letter-spacing: 0; color: var(--ink-3); bottom: 34px; left: 100px; }
+#sections b { color: var(--ink); font-weight: 700; }
+#progress { background: var(--mark); height: 6px; }
+#stage:has(:is(.title-slide, .slide.dark, .slide.logo, .slide.purple, .slide.red).on) .foot { color: #bdbdbd; }
+#stage:has(:is(.title-slide, .slide.dark, .slide.logo, .slide.purple, .slide.red).on) #sections b { color: var(--white); }
+#stage:has(:is(.slide.cyan, .slide.pink, .slide.green, .slide.orange).on) .foot,
+#stage:has(:is(.slide.cyan, .slide.pink, .slide.green, .slide.orange).on) #sections b { color: var(--black); }
+#stage:has(:is(.slide.cyan, .slide.pink, .slide.green, .slide.orange, .slide.purple, .slide.red).on) #progress { background: var(--black); }
+#stage:has(:is(.title-slide, .slide.logo).on) #progress { display: none; }
+/* where the artwork fills the right side, the footer keeps to the left */
+#stage:has(:is(.title-slide, .slide.logo, .slide.art).on) :is(#sections, #counter) { display: none; }
+pre.code { background: #111; border-radius: 0; }

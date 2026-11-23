@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+{{CSS}}
+:root { {{PALETTE}} }
+</style>
+<div id="viewport"><div id="stage" data-sections="{{SECTIONS}}">
+{{SLIDES}}
+<div id="progress"></div>
+<div class="foot"><span>{{FOOT}}</span><span id="sections"></span><span id="counter"></span></div>
+</div></div>
+<div id="figures">{{FIGURES}}</div>
+<div id="nav" aria-label="Slide navigation">
+  <button id="nav-prev" aria-label="Previous">←</button>
+  <button id="nav-next" aria-label="Next">→</button>
+  <button id="nav-full" aria-label="Fullscreen">⛶</button>
+</div>
+<div class="tip" id="tip"></div>
+{{MATHJAX}}
+{{RUNTIME}}
+<script>
+{{ENGINE}}
+</script>
